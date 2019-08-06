@@ -77,7 +77,12 @@ class ProductController extends ApiController
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $producto =  Product::find($product->id);
+        $producto->nombre      = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->cantidad    = $request->cantidad;
+        $producto->valor       = $request->valor;
+        $producto->save();
     }
 
     /**
@@ -95,7 +100,7 @@ class ProductController extends ApiController
             return response()->json([
                 'status' => '1',
                 'msg' => 'success'
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'status' => '0',
