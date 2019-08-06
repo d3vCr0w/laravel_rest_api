@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Venta;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
-class VentaController extends Controller
+class VentaController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -16,23 +17,16 @@ class VentaController extends Controller
      */
     public function index()
     {
-        $this->getAnuncios();
+        return $this->sendResponse($this->getAnuncios(), "Success");
     }
 
     private function getAnuncios()
     {
-        $client   = new Client(['base_uri' => 'hhttp://192.168.1.92:8000/']);
-        $response = $client->request('GET', 'api/v1/announcements');
+        $client   = new Client(['base_uri' => 'http://192.168.1.92:8000']);
+        $response = $client->request('GET', '/api/v1/announcements');
         $body     = $response->getBody();
         $content  = $body->getContents();
-        $arr      = json_decode($content,TRUE);
-        //echo"<pre>";
-        //print_r(get_class_methods($response));
-        //print_r(get_class_methods($body));
-        //print_r($arr);
-        //echo"</pre>";
-        //dd(json_decode($content,true));
-        return $arr;
+        return json_decode($content,TRUE);
     }
 
     /**
