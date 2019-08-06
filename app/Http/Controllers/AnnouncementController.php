@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Venta;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Route;
 
-class VentaController extends Controller
+class AnnouncementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,23 +13,7 @@ class VentaController extends Controller
      */
     public function index()
     {
-        $this->getAnuncios();
-    }
-
-    private function getAnuncios()
-    {
-        $client   = new Client(['base_uri' => 'hhttp://192.168.1.92:8000/']);
-        $response = $client->request('GET', 'api/v1/announcements');
-        $body     = $response->getBody();
-        $content  = $body->getContents();
-        $arr      = json_decode($content,TRUE);
-        //echo"<pre>";
-        //print_r(get_class_methods($response));
-        //print_r(get_class_methods($body));
-        //print_r($arr);
-        //echo"</pre>";
-        //dd(json_decode($content,true));
-        return $arr;
+        //
     }
 
     /**
@@ -59,10 +40,10 @@ class VentaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Venta $venta)
+    public function show($id)
     {
         //
     }
@@ -70,10 +51,10 @@ class VentaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Venta $venta)
+    public function edit($id)
     {
         //
     }
@@ -82,10 +63,10 @@ class VentaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Venta  $venta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -93,10 +74,10 @@ class VentaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Venta  $venta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Venta $venta)
+    public function destroy($id)
     {
         //
     }
