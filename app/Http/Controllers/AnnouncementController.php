@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ApiController;
+use App\Announcement;
 use Illuminate\Http\Request;
 
-class AnnouncementController extends Controller
+class AnnouncementController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        return Announcement::whereNotNull('sold_date')->get();
     }
 
     /**
@@ -40,10 +42,10 @@ class AnnouncementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Announcement $announcement)
     {
         //
     }
@@ -51,10 +53,10 @@ class AnnouncementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Announcement $announcement)
     {
         //
     }
@@ -63,10 +65,10 @@ class AnnouncementController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Announcement $announcement)
     {
         //
     }
@@ -74,10 +76,10 @@ class AnnouncementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Announcement $announcement)
     {
         //
     }
