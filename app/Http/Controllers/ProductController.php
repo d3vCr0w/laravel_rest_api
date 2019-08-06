@@ -39,7 +39,10 @@ class ProductController extends ApiController
     public function store(Request $request)
     {
         $product = new Product();
-        $product->nombre =  $request->nombre;
+        $product->nombre      = $request->nombre;
+        $product->descripcion = $request->descripcion;
+        $product->cantidad    = $request->cantidad;
+        $product->valor       = $request->valor;
         $product->save();
     }
 
