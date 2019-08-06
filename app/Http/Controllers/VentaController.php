@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Venta;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Route;
 
 class VentaController extends Controller
 {
@@ -14,7 +16,23 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        $this->getAnuncios();
+    }
+
+    private function getAnuncios()
+    {
+        $client   = new Client(['base_uri' => 'http://drefapi.com/']);
+        $response = $client->request('GET', 'api/user/city');
+        $body     = $response->getBody();
+        $content  = $body->getContents();
+        $arr      = json_decode($content,TRUE);
+        //echo"<pre>";
+        //print_r(get_class_methods($response));
+        //print_r(get_class_methods($body));
+        //print_r($arr);
+        //echo"</pre>";
+        //dd(json_decode($content,true));
+        return $arr;
     }
 
     /**
